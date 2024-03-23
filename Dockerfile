@@ -1,6 +1,6 @@
 FROM python:3.9.19-slim-bullseye as build
 
-RUN apt update; apt install -y unzip xz-utils nginx-extras
+RUN apt update; apt install -y unzip xz-utils
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
@@ -23,5 +23,6 @@ COPY --from=build /sphinx/build/html /nginx/html
 COPY --from=build /miners/linux /nginx/html/linux
 COPY --from=build /miners/windows /nginx/html/windows
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY keep-alive.sh .
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "./keep-alive.sh & nginx -g 'daemon off;'"]
