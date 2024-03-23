@@ -1,6 +1,6 @@
 FROM python:3.9.19-slim-bullseye as build
 
-RUN apt update; apt install -y unzip xz-utils
+RUN apt update; apt install -y unzip xz-utils nginx-extras
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
