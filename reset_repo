@@ -1,0 +1,10 @@
+#!/bin/bash
+clear
+
+ORIGIN=`git config --get remote.origin.url`
+rm -rf .git
+git init
+git add .; git commit -m "init"
+git remote add origin $ORIGIN
+git branch -M master
+git push --set-upstream origin master -f

@@ -1,0 +1,9 @@
+venv
+docs/build/
+tmp*
+linux
+windows
+*.tgz
+*.gz
+*.zip
+.xz
