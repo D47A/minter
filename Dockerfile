@@ -4,13 +4,17 @@ RUN apt update; apt install -y unzip xz-utils
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-WORKDIR /sphinx
-COPY docs/ .
-RUN sphinx-build -M html source/ build/
+## -----------------------
 
 WORKDIR /miners
 COPY fetch_miners.py .
 RUN python fetch_miners.py
+
+## -----------------------
+
+WORKDIR /sphinx
+COPY docs/ .
+RUN sphinx-build -M html source/ build/
 
 ## -----------------------
 
